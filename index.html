@@ -1,44 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vendgo</title>
-  <style>body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; } form { margin-top: 20px; } label { display: block; margin-bottom: 10px; } input[type="checkbox"] { margin-right: 10px; }</style>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    
+    .redirect-banner {
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      text-align: center;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+    
+    .redirect-banner a {
+      color: white;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+    
+    .redirect-banner a:hover {
+      text-decoration: none;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+    
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #60a5fa;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    p {
+      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.8);
+    }
+    
+    strong {
+      color: white;
+    }
+    
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .card p {
+      margin-bottom: 0.5rem;
+    }
+    
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+    
+    form {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+    }
+    
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin-top: 0.375rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      color: white;
+      font-size: 1rem;
+    }
+    
+    input[type="text"]:focus,
+    input[type="tel"]:focus,
+    input[type="email"]:focus {
+      outline: none;
+      border-color: #3b82f6;
+      background: rgba(255,255,255,0.1);
+    }
+    
+    input[type="text"]::placeholder,
+    input[type="tel"]::placeholder,
+    input[type="email"]::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+    
+    label:has(input[type="checkbox"]) {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      cursor: pointer;
+    }
+    
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin-top: 0.125rem;
+      accent-color: #3b82f6;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    
+    button[type="submit"] {
+      width: 100%;
+      padding: 0.875rem 1.5rem;
+      background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+    
+    img {
+      max-width: 300px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      margin: 1rem 0;
+    }
+    
+    .sample-message {
+      background: rgba(59, 130, 246, 0.1);
+      border-left: 3px solid #3b82f6;
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-style: italic;
+    }
+    
+    .links {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .links a {
+      color: #60a5fa;
+      text-decoration: none;
+      margin-right: 0.5rem;
+    }
+    
+    .links a:hover {
+      text-decoration: underline;
+    }
+    
+    footer {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to Vendgo: Vending Software by Vending Care and Repair LLC</h1>
-  <p>Your ultimate tool for vending machine management, issue reporting, inventory tracking, and profits. Powered by Vending Care and Repair LLC – Sole Proprietor.</p>
+  <div class="redirect-banner">
+    🚀 Visit our new site for the latest features → <a href="https://hi.vendgo.co">hi.vendgo.co</a>
+  </div>
   
-  <h2>Business Information</h2>
-  <p><strong>Business Name:</strong> Vending Care and Repair LLC</p>
-  <p><strong>Address:</strong> 2952 66th Way N, St. Petersburg, FL 33710</p>
-  <p><strong>Phone:</strong> 941-713-1230</p>
-  <p><strong>Email:</strong> btcddy@gmail.com</p>
-  
-  <h2>Report a Vending Machine Issue</h2>
-  <p>To report an issue, text a location identifier (e.g., 82230) to our short code. We'll confirm receipt and dispatch a technician. No marketing – purely transactional.</p>
-  <p><strong>Sample Message:</strong> "Issue logged for machine 82230: Out of stock. Technician en route. Reply STOP to opt out, HELP for support."</p>
-  
-  <h2>Sign Up for SMS Alerts (Optional)</h2>
-  <p>By submitting, you consent to receive SMS for issue confirmations only. Message frequency: As needed per report. Message & data rates may apply. Reply STOP to opt out anytime.</p>
-  
-  <h2>How to Report Issues (Call to Action)</h2>
-  <p>Look for the sticker on the vending/air-vac machine with a unique location ID (e.g., 82230). Text the ID to our number [Your Twilio Number] to report an issue. This initiates consent for transactional SMS confirmations only.</p>
-  <img src="sticker.jpg" alt="Example Vending Machine Sticker" style="max-width: 300px;">
-  <p>Sticker Text Example: "Issue? Text [ID: 82230] to [Your Number] for fast repair. Msg&data rates apply. Reply STOP to opt out."</p>
+  <div class="container">
+    <h1>Welcome to Vendgo: Vending Software by Vending Care and Repair LLC</h1>
+    <p>Your ultimate tool for vending machine management, issue reporting, inventory tracking, and profits. Powered by Vending Care and Repair LLC – Sole Proprietor.</p>
+    
+    <h2>Business Information</h2>
+    <div class="card">
+      <p><strong>Business Name:</strong> Vending Care and Repair LLC</p>
+      <p><strong>Address:</strong> 2952 66th Way N, St. Petersburg, FL 33710</p>
+      <p><strong>Phone:</strong> 941-713-1230</p>
+      <p><strong>Email:</strong> btcddy@gmail.com</p>
+    </div>
+    
+    <h2>Report a Vending Machine Issue</h2>
+    <p>To report an issue, text a location identifier (e.g., 82230) to our short code. We'll confirm receipt and dispatch a technician. No marketing – purely transactional.</p>
+    <div class="sample-message">
+      <strong>Sample Message:</strong> "Issue logged for machine 82230: Out of stock. Technician en route. Reply STOP to opt out, HELP for support."
+    </div>
+    
+    <h2>Sign Up for SMS Alerts (Optional)</h2>
+    <p>By submitting, you consent to receive SMS for issue confirmations only. Message frequency: As needed per report. Message & data rates may apply. Reply STOP to opt out anytime.</p>
+    
+    <h2>How to Report Issues (Call to Action)</h2>
+    <p>Look for the sticker on the vending/air-vac machine with a unique location ID (e.g., 82230). Text the ID to our number [Your Twilio Number] to report an issue. This initiates consent for transactional SMS confirmations only.</p>
+    <img src="sticker.jpg" alt="Example Vending Machine Sticker">
+    <p>Sticker Text Example: "Issue? Text [ID: 82230] to [Your Number] for fast repair. Msg&data rates apply. Reply STOP to opt out."</p>
 
-  <form> <!-- Fake for approval; add real backend later -->
-    <label>Full Name: <input type="text" name="name"></label>
-    <label>Phone Number: <input type="tel" name="phone"></label>
-    <label>Email: <input type="email" name="email"></label>
-    <label>
-      <input type="checkbox" name="consent"> I agree to receive SMS notifications solely for vending issue reports and confirmations. No marketing. Reply STOP to opt out, HELP for help. Message & data rates may apply.
-    </label>
-    <button type="submit">Submit Report</button>
-  </form>
-  
-  <p>We only collect your phone number when you text a location identifier (e.g., 82230) to report a vending-machine issue. The number is used solely to log the issue and send a confirmation to the technician. No marketing messages are ever sent.</p>
-  
-  <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a> | <a href="/contact.html">Contact Us</a>
-  <footer>© 2026 Vending Care and Repair LLC – Owner / Sole Proprietor, St. Petersburg, FL</footer>
+    <form>
+      <label>Full Name: <input type="text" name="name"></label>
+      <label>Phone Number: <input type="tel" name="phone"></label>
+      <label>Email: <input type="email" name="email"></label>
+      <label>
+        <input type="checkbox" name="consent"> I agree to receive SMS notifications solely for vending issue reports and confirmations. No marketing. Reply STOP to opt out, HELP for help. Message & data rates may apply.
+      </label>
+      <button type="submit">Submit Report</button>
+    </form>
+    
+    <p style="margin-top: 1.5rem;">We only collect your phone number when you text a location identifier (e.g., 82230) to report a vending-machine issue. The number is used solely to log the issue and send a confirmation to the technician. No marketing messages are ever sent.</p>
+    
+    <div class="links">
+      <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a> | <a href="/contact.html">Contact Us</a>
+    </div>
+    
+    <footer>© 2026 Vending Care and Repair LLC – Owner / Sole Proprietor, St. Petersburg, FL</footer>
+  </div>
 </body>
 </html>
